@@ -9,18 +9,16 @@ Usage
 ---
 ```python
 > from mistermarket import MrMarket
-> jfc = MrMarket('jfc') # accepts stock ticker
-> meg = MrMarket('meg')
+> jfc = MrMarket('jfc') # Jollibee's stock ticker
+> meg = MrMarket('meg') # Megaworld's stock ticker
 > jfc.price
 119.32
 > meg.price
 3.75
 ```
 
-
-
 Software Requirements and Dependencies
 ---
 * Requests
 * Beautiful Soup
-* Investagram URL
+* Investagrams URL
