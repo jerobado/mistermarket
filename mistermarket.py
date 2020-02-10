@@ -25,18 +25,19 @@ class MrMarket:
 
     def __init__(self, ticker):
 
-        self.name = ticker
-        self.price = self._search_ticker()
+        self.company = str
+        self.price = float
+        self.ticker = ticker
+        self._search_ticker(ticker)
 
-    def _search_ticker(self):
+    def _search_ticker(self, ticker):
 
         try:
-            result = None
-            investegram_url = f'https://www.investagrams.com/stock/{self.name}'
+            investegram_url = f'https://www.investagrams.com/stock/{ticker}'
             response = requests.get(investegram_url)
             soup = bs4.BeautifulSoup(response.content, 'html.parser')
-            result = soup.find(id="lblStockLatestLastPrice").text.strip()
-            return float(result)
+            self.company = soup.find('h4', class_='mb-0').find('small').get_text(strip=True)
+            self.price = float(soup.find(id="lblStockLatestLastPrice").get_text(strip=True))
 
         except Exception:
             return None
