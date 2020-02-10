@@ -9,7 +9,7 @@ class MrMarketTestCase(unittest.TestCase):
     def test_name_if_equal_to_ticker(self):
 
         company = MrMarket('jfc')
-        result = company.name
+        result = company.ticker
         expected = 'jfc'
 
         self.assertEqual(result, expected)
@@ -23,10 +23,18 @@ class MrMarketTestCase(unittest.TestCase):
         response = requests.get(investegram_url)
         soup = bs4.BeautifulSoup(response.content, 'html.parser')
         expected = float(soup.find(id='lblStockLatestLastPrice').text.strip())
-        print(f'current price: {expected}')
-        result = company._search_ticker()
+        print(f'{ticker} current price: {expected}')
+        result = company.price
 
         self.assertEqual(result, expected, f'current price: {expected}')
+
+    def test_price_return_type_equal_to_float(self):
+
+        stock = MrMarket('ans')
+        result = stock.price
+        expected = float
+
+        self.assertIsInstance(result, expected)
 
 
 if __name__ == '__main__':
