@@ -36,6 +36,20 @@ class MrMarketTestCase(unittest.TestCase):
 
         self.assertIsInstance(result, expected)
 
+    def test_bloomberg_url(self):
+
+        # [] TODO: learn how to interact with webpage bot inspectors
+        ticker = 'LBMMKPL'
+        bloomberg_url = f'https://www.bloomberg.com/quote/{ticker}:PM'
+        print(bloomberg_url)
+        response = requests.get(bloomberg_url)
+        soup = bs4.BeautifulSoup(response.content, 'html.parser')
+        print(soup.prettify())
+        # result = soup.find_all(class_='priceText__1853e8a5')
+        # print(result)
+
+        # self.assertEqual(result, 1)
+
 
 if __name__ == '__main__':
     unittest.main()
