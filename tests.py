@@ -36,19 +36,20 @@ class MrMarketTestCase(unittest.TestCase):
 
         self.assertIsInstance(result, expected)
 
-    def test_bloomberg_url(self):
+    def test_search_UITFPH_result(self):
 
-        # [] TODO: learn how to interact with webpage bot inspectors
         ticker = 'LBMMKPL'
-        bloomberg_url = f'https://www.bloomberg.com/quote/{ticker}:PM'
-        print(bloomberg_url)
-        response = requests.get(bloomberg_url)
+        url = {'LBMMKPL': 'http://www.uitf.com.ph/daily_navpu.php?bank_id=9#gsc.tab=0'}
+        response = requests.get(url[ticker])
         soup = bs4.BeautifulSoup(response.content, 'html.parser')
-        print(soup.prettify())
-        # result = soup.find_all(class_='priceText__1853e8a5')
-        # print(result)
 
-        # self.assertEqual(result, 1)
+        fund_names = [element.a.get_text(strip=True) for element in soup.find_all('td', attrs={'data-title': 'Fund Name'})]
+        navpu = [element.div.get_text(strip=True) for element in soup.find_all('td', attrs={'data-title': 'NAVpu'})]
+
+        landbank = dict(zip(fund_names, navpu))
+
+        for fund, navpu in landbank.items():
+            print(fund, navpu)
 
 
 if __name__ == '__main__':
