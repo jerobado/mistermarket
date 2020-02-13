@@ -38,8 +38,8 @@ class MrMarketTestCase(unittest.TestCase):
 
     def test_search_UITFPH_result(self):
 
-        ticker = 'LBMMKPL'
-        url = {'LBMMKPL': 'http://www.uitf.com.ph/daily_navpu.php?bank_id=9#gsc.tab=0'}
+        ticker = 'LANDBANK Money Market Plus Fund'
+        url = {'LANDBANK Money Market Plus Fund': 'http://www.uitf.com.ph/daily_navpu.php?bank_id=9#gsc.tab=0'}
         response = requests.get(url[ticker])
         soup = bs4.BeautifulSoup(response.content, 'html.parser')
 
@@ -50,6 +50,9 @@ class MrMarketTestCase(unittest.TestCase):
 
         for fund, navpu in landbank.items():
             print(fund, navpu)
+
+        # latest navpu of ticker
+        print(landbank.get(ticker, None))
 
 
 if __name__ == '__main__':
