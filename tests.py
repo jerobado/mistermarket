@@ -58,6 +58,15 @@ class MrMarketTestCase(unittest.TestCase):
 
         self.price = landbank.get(ticker, None)
 
+    def test_phisix_api_url(self):
+
+        ticker = 'x'
+        phisix_url = f'http://phisix-api2.appspot.com/stocks/{ticker}.json'
+        response = requests.get(phisix_url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(type(response.json()), dict)
+
 
 if __name__ == '__main__':
     unittest.main()
