@@ -29,20 +29,27 @@ class MrMarket:
         self.market = market
         self.company = None
         self.price = None
-        self._search_ticker()
+        self.change = None
+        # self._search_ticker()
+        self._search_ticker2()
 
     def _search_ticker(self):
 
         try:
 
             if self.market == 'equity':
-                self._search_equity()
+                # self._search_equity()
+                self._search_equity2()
 
             elif self.market == 'uitf':
                 self._search_uitf()
 
         except Exception:
             return None
+
+    def _search_ticker2(self):
+
+        self._search_equity2()
 
     def _search_uitf(self):
 
@@ -68,3 +75,13 @@ class MrMarket:
 
         self.company = soup.find('h4', class_='mb-0').find('small').get_text(strip=True)
         self.price = float(soup.find(id="lblStockLatestLastPrice").get_text(strip=True))
+
+    def _search_equity2(self):
+        """ Using the Phisix API URL """
+
+        phisix_url = f'http://phisix-api2.appspot.com/stocks/{self.ticker}.json'
+        response = requests.get(phisix_url)
+        quote = response.json()
+        self.company = quote['stock'][0]['name']
+        self.price = quote['stock'][0]['price']['amount']
+        self.change = quote['stock'][0]['percent_change']
