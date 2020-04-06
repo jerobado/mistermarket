@@ -30,6 +30,8 @@ class MrMarket:
         self.company = None
         self.price = None
         self.price_change = None
+        self._status_code = None
+        self._json = None
         self._search_equity()
 
     def _search_equity(self):
@@ -38,6 +40,8 @@ class MrMarket:
         phisix_url = f'http://phisix-api2.appspot.com/stocks/{self.ticker}.json'
         response = requests.get(phisix_url)
         quote = response.json()
+        self._status_code = response.status_code
+        self._json = response.json()
         self.company = quote['stock'][0]['name']
         self.price = quote['stock'][0]['price']['amount']
         self.price_change = quote['stock'][0]['percent_change']
