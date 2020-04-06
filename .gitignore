@@ -1,5 +1,16 @@
+# PyCharm stuff
 *.idea
 *.xml
 *.iml
+
+# Python stuff
 *.pyc
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info
+*.egg
+
+# Personal files
 _todo.txt
