@@ -15,7 +15,7 @@ Usage
 
 """
 
-__version__ = '0.1'
+__version__ = '0.1.1'
 
 import bs4
 import requests

@@ -1,11 +1,12 @@
 import setuptools
+from mistermarket.mistermarket import __version__
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="mistermarket",      # Replace with your own username
-    version="0.1",
+    version=__version__,
     author="Jero Bado",
     author_email="gerol.bado@geronacapital.com",
     description="Mr. Market - your servant in the Philippine financial market",
