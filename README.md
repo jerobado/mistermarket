@@ -5,6 +5,12 @@ Features & Benefits
 --- 
 * Get the latest market price of a stock in the Philippine Stock Exchange
 
+Installation
+---
+```python
+> pip install mistermarket
+```
+
 Usage
 ---
 ```python
@@ -19,6 +25,5 @@ Usage
 
 Software Requirements and Dependencies
 ---
-* Requests
-* Beautiful Soup
-* Investagrams URL
+* [Requests](https://github.com/psf/requests)
+* [Phisix API](http://phisix-api4.appspot.com/)
